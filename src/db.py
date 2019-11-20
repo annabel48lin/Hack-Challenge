@@ -4,8 +4,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String, nullable=False)
+    username = db.Column(db.String, primary_key=True)
     password = db.Column(db.String, nullable=False)
     memes = db.relationship('Meme', cascade='delete')
     shared = db.relationship('Meme')
@@ -31,7 +30,7 @@ class User(db.Model):
 
     def serialize_for_table(self):
         return{
-            'username': user.username
+            'username': self.username
         }
 
 class Meme(db.Model):
@@ -57,7 +56,7 @@ class Meme(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'url': self.url,
+            'url': self.url
         }
 
    
