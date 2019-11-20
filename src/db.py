@@ -36,27 +36,17 @@ class User(db.Model):
 class Meme(db.Model):
     __tablename__ = 'meme'
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
-    creator = db.Column(db.String, db.ForeignKey('user.username'), nullable=Flase)
+    
 
     def __init__(self, **kwargs):
-        self.title = kwargs.get('title')
+        self.name = kwargs.get('title')
         self.url = kwargs.get('url')
 
     def serialize(self):
         return {
             'id': self.id,
-            'title': self.title,
+            'name': self.name,
             'url': self.url,
-            'creator': self.creator.serialize_for_table()
         }
-
-    def serialize_for_table(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'url': self.url
-        }
-
-   
