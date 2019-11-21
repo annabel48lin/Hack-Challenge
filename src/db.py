@@ -38,7 +38,7 @@ class Meme(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
-    creator = db.Column(db.String, db.ForeignKey('user.username'), nullable=Flase)
+    creator = db.Column(db.String, db.ForeignKey('user.username'), nullable=False)
 
     def __init__(self, **kwargs):
         self.title = kwargs.get('title')
