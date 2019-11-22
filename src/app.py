@@ -1,4 +1,5 @@
 import json
+import requests
 from db import db, User, Meme
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
@@ -6,6 +7,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 db_filename = 'cms_sim.db'
 app = Flask(__name__)
+imgflipUsername = "annabel48lin"
+imgflipPassword = "helloworld"
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s' % db_filename
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -48,16 +51,30 @@ def create_meme(username):
         return json.dumps({'success': False, 'error': 'Username does not exist!'}), 404
     
     post_body = json.loads(request.data)
-    title = post_body.get('title')
-    url = post_body.get('url')
+    template_id = post_body.get('template_id')
+    text0 = post_body.get('text0')
+    text1 = post_body.get('text1')
+    font = post_body.get('font')
+    name = post_body.get('name')
 
-    meme = Meme(
-        tilte = title,
-        url = url
-    )
+    toSend = {'template_id': template_id, 'username': imgflipUsername, 'password': imgflipPassword, 'text0': text0, 'text1': text1, 'font': font}
+    res = requests.post('https://api.imgflip.com/caption_image', data=json.dumps(toSend))
 
-    db.session.add(meme)
-    db.session.commit()
+    if (res.json()['success'] == True):
+        meme = Meme(
+            name = name,
+            url = res.json()['data']['url']
+        )
+
+        db.session.add(meme)
+        db.session.commit()
+
+        return json.dumps({'success': True, 'data': meme.serialize()}), 201
+
+    else:
+        return json.dumps({'success': False, 'error': "@ios you did something wrong"}), 201
+
+
 
 @app.route('/api/user/memes/<int:meme_id>/', methods = ['POST'])
 def delete_meme(meme_id):
