@@ -43,12 +43,12 @@ def signup():
 
     return json.dumps({'success': False, 'error': 'Username taken!'}), 404
 
-@app.route('/api/user/<username>/create/', methods = ['POST'])
-def create_meme(username):
+@app.route('/api/user/<int:user_id>/create/', methods = ['POST'])
+def create_meme(user_id):
 
-    usernameExists = User.query.filter_by(username = username).first()
+    usernameExists = User.query.filter_by(id = user_id).first()
     if not usernameExists:
-        return json.dumps({'success': False, 'error': 'Username does not exist!'}), 404
+        return json.dumps({'success': False, 'error': 'User does not exist!'}), 404
     
     post_body = json.loads(request.data)
     template_id = post_body.get('template_id')
@@ -57,13 +57,24 @@ def create_meme(username):
     font = post_body.get('font')
     name = post_body.get('name')
 
-    toSend = {'template_id': template_id, 'username': imgflipUsername, 'password': imgflipPassword, 'text0': text0, 'text1': text1, 'font': font}
-    res = requests.post('https://api.imgflip.com/caption_image', data=json.dumps(toSend))
+    #http://api.imgflip.com/caption_image?template_id=16464531&text0=when you're bad at everything&text1=hello&font="impact"&username=annabel48lin&password=helloworld
+
+    toSend = 'http://api.imgflip.com/caption_image?'
+    toSend += 'template_id=' + template_id + '&'
+    toSend += 'text0=' + text0 + '&'
+    toSend += 'text1=' + text1 + '&'
+    toSend += 'font=' + font + '&'
+    toSend += 'username=' + imgflipUsername + '&'
+    toSend += 'password=' + imgflipPassword
+
+    res = requests.post(toSend)
 
     if (res.json()['success'] == True):
+        
         meme = Meme(
             name = name,
-            url = res.json()['data']['url']
+            url = res.json()['data']['url'],
+            creator_id = user_id
         )
 
         db.session.add(meme)
@@ -72,7 +83,7 @@ def create_meme(username):
         return json.dumps({'success': True, 'data': meme.serialize()}), 201
 
     else:
-        return json.dumps({'success': False, 'error': "@ios you did something wrong"}), 201
+        return json.dumps({'success': False, 'error': "@ios you did something wrong"}), 400
 
 
 
