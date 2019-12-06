@@ -1,40 +1,33 @@
 //
-//  ViewController.swift
+//  SignUpViewController.swift
 //  MemeHackChallenge
 //
-//  Created by Claire Wang on 11/21/19.
+//  Created by Claire Wang on 12/6/19.
 //  Copyright © 2019 Claire Wang. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class SignUpViewController: UIViewController {
+
     var titleLabel: UILabel!
     var userNameLabel: UILabel!
     var passwordLabel: UILabel!
     var userNameTextField: UITextField!
     var passwordTextField: UITextField!
     var loginButton: UIButton!
-    var signupButton: UIButton!
-    
-    var temp: [Meme] = []
+    var invalidName: UIAlertController!
+    var success: UIAlertController!
+    var failed: UIAlertController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(red: 232/255.0, green: 216/255.0, blue: 255/255.0, alpha: 1)
-        title = "Meme!!!"
-        
-        
-        NetworkManger.getMemes { Meme in
-            self.temp = Meme
-            DispatchQueue.main.async {
-                
-            }
-        }
+        view.backgroundColor = UIColor(red: 216/255.0, green: 249/255.0, blue: 255/255.0, alpha: 1)
+        title = "Sign Up"
 
         titleLabel = UILabel()
-        titleLabel.text = "Meme is Life"
+        titleLabel.text = "Welcome!!"
         titleLabel.font = UIFont(name: "Zapfino", size: 40)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(titleLabel)
@@ -72,7 +65,7 @@ class ViewController: UIViewController {
         view.addSubview(passwordTextField)
         
         loginButton = UIButton()
-        loginButton.setTitle("Login", for: .normal)
+        loginButton.setTitle("Sign Up", for: .normal)
         loginButton.setTitleColor(.systemBlue, for: .normal)
         loginButton.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         loginButton.backgroundColor = .white
@@ -86,14 +79,10 @@ class ViewController: UIViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginButton)
         
-        signupButton = UIButton()
-        signupButton.setTitle("Don't have an account? Sign Up!", for: .normal)
-        signupButton.setTitleColor(.systemBlue, for: .normal)
-        signupButton.titleLabel?.font = UIFont(name: "SavoyeLetPlain", size: 36)
-        signupButton.addTarget(self, action: #selector(signupAction), for: .touchUpInside)
-        signupButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(signupButton)
-    
+        invalidName = UIAlertController(title: "Invalid Input!", message: "Username or password cannot be empty", preferredStyle: .alert)
+        success = UIAlertController(title: "Account Created!", message: "Your account is created successfully!", preferredStyle: .alert)
+        failed = UIAlertController(title: "Account Failed to Create!", message: "Your account was not created successfully due to existing username!", preferredStyle: .alert)
+        
         setUpConstraints()
     }
     
@@ -132,21 +121,38 @@ class ViewController: UIViewController {
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
         ])
-        
-        NSLayoutConstraint.activate([
-            signupButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: offset / 1.5),
-            signupButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
     }
     
     @objc func loginAction() {
-        let newMeme = MemeHistoryViewController()
-        navigationController?.pushViewController(newMeme, animated: true)
-        NetworkManger.signup(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
+        let u: String = userNameTextField.text ?? ""
+        let p: String = passwordTextField.text ?? ""
+        if u == "" || p == "" {
+            self.present(invalidName, animated: true) {
+            self.invalidName.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+            }
+            return
+        } else {
+            NetworkManger.signup(username: u, password: p)
+            
+            print(NetworkManger.signUpResult)
+            
+            if NetworkManger.signUpResult == true {
+               self.present(success, animated: true) { self.success.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapAndView)))
+                }
+            } else {
+                self.present(failed, animated: true) { self.failed.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapAndView)))
+                }
+            }
+        }
     }
     
-    @objc func signupAction() {
-        let signupView = SignUpViewController()
-        navigationController?.pushViewController(signupView, animated: true)
+    @objc func backgroundTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func backgroundTapAndView() {
+        self.dismiss(animated: true, completion: nil)
+        navigationController?.popToRootViewController(animated: true)
+        dismiss(animated: true, completion: nil)
     }
 }

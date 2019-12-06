@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Meme {
+class Meme: Codable {
     var URL: String!
     var imageID: String!
     var name: String!
