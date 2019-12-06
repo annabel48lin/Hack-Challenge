@@ -13,21 +13,21 @@ class User(db.Model):
     username = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
     memes = db.relationship('Meme', cascade='delete')
-    shared = db.relationship('Meme', secondary=association_table, back_populates='users')
+    #shared = db.relationship('Meme', secondary=association_table, back_populates='users')
 
     def __init__(self, **kwargs):
         self.username = kwargs.get('username')
         self.password = kwargs.get('password')
         self.memes = []
-        self.shared = []
-        self.following = []
+        #self.shared = []
+        #self.following = []
 
     def serialize(self):
         return {
             'username': self.username,
-            'memes': [m.serialize() for m in self.memes],
-            'shared': [s.serialize() for s in self.shared],
-            'following': [f.serialize() for f in self.following]
+            'memes': [m.serialize() for m in self.memes]
+            #'shared': [s.serialize() for s in self.shared],
+            #'following': [f.serialize() for f in self.following]
         }
 
 class Meme(db.Model):
@@ -36,7 +36,7 @@ class Meme(db.Model):
     name = db.Column(db.String, nullable=False)
     url = db.Column(db.String, nullable=False)
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    users = db.relationship('User', secondary=association_table, back_populates='shared')
+    #users = db.relationship('User', secondary=association_table, back_populates='shared')
 
     def __init__(self, **kwargs):
         self.name = kwargs.get('title')

@@ -34,8 +34,8 @@ def signup():
     usernameExists = User.query.filter_by(username = username).first()
     if not usernameExists:
         user = User(
-        username = username,
-        password = password
+            username = username,
+            password = password
         )
         db.session.add(user)
         db.session.commit()
