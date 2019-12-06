@@ -56,11 +56,12 @@ def create_meme(user_id):
     text1 = post_body.get('text1')
     font = post_body.get('font')
     name = post_body.get('name')
+    print(name)
 
     #http://api.imgflip.com/caption_image?template_id=16464531&text0=when you're bad at everything&text1=hello&font="impact"&username=annabel48lin&password=helloworld
 
     toSend = 'http://api.imgflip.com/caption_image?'
-    toSend += 'template_id=' + template_id + '&'
+    toSend += 'template_id=' + str(template_id) + '&'
     toSend += 'text0=' + text0 + '&'
     toSend += 'text1=' + text1 + '&'
     toSend += 'font=' + font + '&'

@@ -24,6 +24,7 @@ class User(db.Model):
 
     def serialize(self):
         return {
+            'id': self.id,
             'username': self.username,
             'memes': [m.serialize() for m in self.memes]
             #'shared': [s.serialize() for s in self.shared],
@@ -39,8 +40,9 @@ class Meme(db.Model):
     #users = db.relationship('User', secondary=association_table, back_populates='shared')
 
     def __init__(self, **kwargs):
-        self.name = kwargs.get('title')
+        self.name = kwargs.get('name')
         self.url = kwargs.get('url')
+        self.creator_id = kwargs.get('creator_id')
 
     def serialize(self):
         return {
