@@ -31,6 +31,9 @@ class User(db.Model):
             #'following': [f.serialize() for f in self.following]
         }
 
+    def password(self):
+        return str(self.password)
+
 class Meme(db.Model):
     __tablename__ = 'meme'
     id = db.Column(db.Integer, primary_key=True)
