@@ -140,7 +140,7 @@ class SignUpViewController: UIViewController {
                self.present(success, animated: true) { self.success.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapAndView)))
                 }
             } else {
-                self.present(failed, animated: true) { self.failed.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapAndView)))
+                self.present(failed, animated: true) { self.failed.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
                 }
             }
         }

@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     var loginButton: UIButton!
     var signupButton: UIButton!
     
+    static var username: String = ""
+    static var password: String = ""
+    static var userID: Int = 0 
+    
     var temp: [Meme] = []
     
     override func viewDidLoad() {

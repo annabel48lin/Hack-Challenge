@@ -10,6 +10,7 @@ import UIKit
 
 class MemeCollectionViewCell: UICollectionViewCell {
     var meme: UIImageView!
+    var deleteLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +20,11 @@ class MemeCollectionViewCell: UICollectionViewCell {
         meme.layer.masksToBounds = true
         meme.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(meme)
+        
+        deleteLabel = UILabel()
+        deleteLabel.text = "PUT IN MEME ID"
+        deleteLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(deleteLabel)
         
         setUpConstraints()
     }
