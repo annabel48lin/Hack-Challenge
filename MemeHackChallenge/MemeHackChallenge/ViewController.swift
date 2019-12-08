@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class ViewController: UIViewController {
     var titleLabel: UILabel!
@@ -19,11 +17,25 @@ class ViewController: UIViewController {
     var loginButton: UIButton!
     var signupButton: UIButton!
     
+    static var username: String = ""
+    static var password: String = ""
+    static var userID: Int = 0 
+    
+    var temp: [Meme] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(red: 232/255.0, green: 216/255.0, blue: 255/255.0, alpha: 1)
         title = "Meme!!!"
+        
+        
+        NetworkManger.getMemes { Meme in
+            self.temp = Meme
+            DispatchQueue.main.async {
+                
+            }
+        }
 
         titleLabel = UILabel()
         titleLabel.text = "Meme is Life"
@@ -134,10 +146,11 @@ class ViewController: UIViewController {
     @objc func loginAction() {
         let newMeme = MemeHistoryViewController()
         navigationController?.pushViewController(newMeme, animated: true)
+        NetworkManger.signup(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
     }
     
     @objc func signupAction() {
-//        signupView.delegate = self
-//        navigationController?.pushViewController(signupView, animated: true)
+        let signupView = SignUpViewController()
+        navigationController?.pushViewController(signupView, animated: true)
     }
 }

@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		696082914F3472CE7E3405A6 /* Pods_MemeHackChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79118F9FCAC70A2F0075A6A /* Pods_MemeHackChallenge.framework */; };
+		6ECF0E68239B12B500B881FA /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF0E67239B12B500B881FA /* CanvasViewController.swift */; };
+		A2BCFC8D2ACCEEF727FB8063 /* Pods_MemeHackChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E348B78CF8C76B45E6E60 /* Pods_MemeHackChallengeTests.framework */; };
+		AC9B9272000E88EF74AA3539 /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD25CD4D21BFC0AE2AADBFF /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework */; };
 		E9478A742387831A00E20FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478A732387831A00E20FE1 /* AppDelegate.swift */; };
 		E9478A782387831A00E20FE1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478A772387831A00E20FE1 /* ViewController.swift */; };
 		E9478A7D2387832000E20FE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9478A7C2387832000E20FE1 /* Assets.xcassets */; };
@@ -16,6 +20,8 @@
 		E9478AA42387949D00E20FE1 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478AA32387949D00E20FE1 /* MemeCollectionViewCell.swift */; };
 		E9478AA82388702400E20FE1 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478AA72388702400E20FE1 /* Meme.swift */; };
 		E9478AAC2388742B00E20FE1 /* MemeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */; };
+		E9FECF7A239AEB0B0002FFB4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */; };
+		E9FECF7C239AFD340002FFB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		107E348B78CF8C76B45E6E60 /* Pods_MemeHackChallengeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeHackChallengeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		172ECABB16B492A552CB86FE /* Pods-MemeHackChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallengeTests.release.xcconfig"; path = "Target Support Files/Pods-MemeHackChallengeTests/Pods-MemeHackChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
+		1E83D508D1D10F8EE607F6E4 /* Pods-MemeHackChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge.release.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge.release.xcconfig"; sourceTree = "<group>"; };
+		26274055E52DB0C8AC8DF46D /* Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4DD25CD4D21BFC0AE2AADBFF /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeHackChallenge_MemeHackChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ECF0E67239B12B500B881FA /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
+		8C53313A1AD5157F56EA607D /* Pods-MemeHackChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallengeTests.debug.xcconfig"; path = "Target Support Files/Pods-MemeHackChallengeTests/Pods-MemeHackChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B79118F9FCAC70A2F0075A6A /* Pods_MemeHackChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeHackChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C862652D77838FE6BC8DB333 /* Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD7FD2CE2A6E266A721F9579 /* Pods-MemeHackChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge.debug.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		E9478A702387831A00E20FE1 /* MemeHackChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeHackChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9478A732387831A00E20FE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9478A772387831A00E20FE1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +67,8 @@
 		E9478AA32387949D00E20FE1 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		E9478AA72388702400E20FE1 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeHistoryViewController.swift; sourceTree = "<group>"; };
+		E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				696082914F3472CE7E3405A6 /* Pods_MemeHackChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2BCFC8D2ACCEEF727FB8063 /* Pods_MemeHackChallengeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9B9272000E88EF74AA3539 /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F297FFB971174550DAE0EC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B79118F9FCAC70A2F0075A6A /* Pods_MemeHackChallenge.framework */,
+				4DD25CD4D21BFC0AE2AADBFF /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework */,
+				107E348B78CF8C76B45E6E60 /* Pods_MemeHackChallengeTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5E3941FBBC088D52C6AFB7D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DD7FD2CE2A6E266A721F9579 /* Pods-MemeHackChallenge.debug.xcconfig */,
+				1E83D508D1D10F8EE607F6E4 /* Pods-MemeHackChallenge.release.xcconfig */,
+				C862652D77838FE6BC8DB333 /* Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig */,
+				26274055E52DB0C8AC8DF46D /* Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig */,
+				8C53313A1AD5157F56EA607D /* Pods-MemeHackChallengeTests.debug.xcconfig */,
+				172ECABB16B492A552CB86FE /* Pods-MemeHackChallengeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E9478A672387831A00E20FE1 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +129,8 @@
 				E9478A892387832000E20FE1 /* MemeHackChallengeTests */,
 				E9478A942387832000E20FE1 /* MemeHackChallengeUITests */,
 				E9478A712387831A00E20FE1 /* Products */,
+				C5E3941FBBC088D52C6AFB7D /* Pods */,
+				8F297FFB971174550DAE0EC4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +155,9 @@
 				E9478A7E2387832000E20FE1 /* LaunchScreen.storyboard */,
 				E9478A812387832000E20FE1 /* Info.plist */,
 				E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */,
+				E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */,
+				E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */,
+				6ECF0E67239B12B500B881FA /* CanvasViewController.swift */,
 			);
 			path = MemeHackChallenge;
 			sourceTree = "<group>";
@@ -138,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9478A9A2387832000E20FE1 /* Build configuration list for PBXNativeTarget "MemeHackChallenge" */;
 			buildPhases = (
+				B530D4BBF900707FAB52243C /* [CP] Check Pods Manifest.lock */,
 				E9478A6C2387831A00E20FE1 /* Sources */,
 				E9478A6D2387831A00E20FE1 /* Frameworks */,
 				E9478A6E2387831A00E20FE1 /* Resources */,
+				4384373FF60F82DFCDB1F30A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,6 +206,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9478A9D2387832000E20FE1 /* Build configuration list for PBXNativeTarget "MemeHackChallengeTests" */;
 			buildPhases = (
+				43E01EB23F9B29DA89028BA7 /* [CP] Check Pods Manifest.lock */,
 				E9478A822387832000E20FE1 /* Sources */,
 				E9478A832387832000E20FE1 /* Frameworks */,
 				E9478A842387832000E20FE1 /* Resources */,
@@ -173,9 +225,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9478AA02387832000E20FE1 /* Build configuration list for PBXNativeTarget "MemeHackChallengeUITests" */;
 			buildPhases = (
+				93FB105835C0D64FC057E7EB /* [CP] Check Pods Manifest.lock */,
 				E9478A8D2387832000E20FE1 /* Sources */,
 				E9478A8E2387832000E20FE1 /* Frameworks */,
 				E9478A8F2387832000E20FE1 /* Resources */,
+				172515042E3396ED57B60174 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -256,11 +310,117 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		172515042E3396ED57B60174 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4384373FF60F82DFCDB1F30A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		43E01EB23F9B29DA89028BA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MemeHackChallengeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93FB105835C0D64FC057E7EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MemeHackChallenge-MemeHackChallengeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B530D4BBF900707FAB52243C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MemeHackChallenge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E9478A6C2387831A00E20FE1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECF0E68239B12B500B881FA /* CanvasViewController.swift in Sources */,
+				E9FECF7A239AEB0B0002FFB4 /* NetworkManager.swift in Sources */,
+				E9FECF7C239AFD340002FFB4 /* SignUpViewController.swift in Sources */,
 				E9478AAC2388742B00E20FE1 /* MemeHistoryViewController.swift in Sources */,
 				E9478AA42387949D00E20FE1 /* MemeCollectionViewCell.swift in Sources */,
 				E9478AA82388702400E20FE1 /* Meme.swift in Sources */,
@@ -428,6 +588,7 @@
 		};
 		E9478A9B2387832000E20FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD7FD2CE2A6E266A721F9579 /* Pods-MemeHackChallenge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -445,6 +606,7 @@
 		};
 		E9478A9C2387832000E20FE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E83D508D1D10F8EE607F6E4 /* Pods-MemeHackChallenge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -462,6 +624,7 @@
 		};
 		E9478A9E2387832000E20FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C53313A1AD5157F56EA607D /* Pods-MemeHackChallengeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -483,6 +646,7 @@
 		};
 		E9478A9F2387832000E20FE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 172ECABB16B492A552CB86FE /* Pods-MemeHackChallengeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -504,6 +668,7 @@
 		};
 		E9478AA12387832000E20FE1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C862652D77838FE6BC8DB333 /* Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +688,7 @@
 		};
 		E9478AA22387832000E20FE1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26274055E52DB0C8AC8DF46D /* Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

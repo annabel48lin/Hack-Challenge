@@ -1,0 +1,6 @@
+framework module Pods_MemeHackChallengeTests {
+  umbrella header "Pods-MemeHackChallengeTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
