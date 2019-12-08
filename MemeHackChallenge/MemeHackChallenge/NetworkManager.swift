@@ -14,6 +14,24 @@ class NetworkManger {
     private static let endpoint = "http://104.196.33.218/" //"http://0.0.0.0:5000"
     static var signUpResult: Bool = false
     
+    static func searchMeme(fromTitle title: String, _ didGetRecipes: @escaping ([UIImage]) -> Void) {
+        Alamofire.request("https://imgflip.com/memesearch?q=" + title, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                var searchResult: [UIImage] = []
+                if let json: JSON? = JSON(data) {
+                    print(data)
+//                    for i in 0..<json!["results"].count {
+//                        searchResult.append(Recipe(title: json!["results"][i]["title"].stringValue, ingredients: json!["results"][i]["ingredients"].stringValue))
+//                    }
+                }
+                didGetRecipes(searchResult)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     static func getMemes(completion: @escaping ([Meme]) -> Void) {
         Alamofire.request(endpoint + "/api/users/", method: .get).validate().responseData { response in
             switch response.result {

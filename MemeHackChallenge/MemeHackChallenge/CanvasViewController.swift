@@ -9,13 +9,19 @@
 import UIKit
 
 class CanvasViewController: UIViewController {
+    
     var memeImage: UIImageView!
+    var searchResult: SearchCollectionViewController!
     var topTextField: UITextField!
     var bottomTextField: UITextField!
     var finishButton: UIButton!
+    var searchBar: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        memeImage = UIImageView()
+        
         
         topTextField = UITextField()
         topTextField.text = "hellooooo"
@@ -37,10 +43,19 @@ class CanvasViewController: UIViewController {
         finishButton.addTarget(self, action: #selector(finishAction), for: .touchUpInside)
         view.addSubview(finishButton)
         
+        searchBar = UISearchController(searchResultsController: nil)
+//        searchBar.searchResultsUpdater = memeImage
+        searchBar.dimsBackgroundDuringPresentation = false
+        searchBar.searchBar.placeholder = "Want a meme? Search for one!"
+        searchBar.searchResultsUpdater = searchResult
+        searchBar.searchBar.sizeToFit()
+        
+        
         setUpConstraints()
     }
     
     func setUpConstraints() {
+        
         NSLayoutConstraint.activate([
             topTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             topTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30)
@@ -62,7 +77,4 @@ class CanvasViewController: UIViewController {
         NetworkManger.create(userID: ViewController.userID, username: ViewController.username, password: ViewController.password)
         self.navigationController?.popViewController(animated: true)
     }
-    
-
-
 }
