@@ -113,7 +113,7 @@ class MemeHistoryViewController: UIViewController {
             }
             return
         }
-        NetworkManger.delete(memeID: 0, username: ViewController.username, password: ViewController.password)
+        NetworkManger.delete(memeID: 0, username: ViewController.username, password: ViewController.password, userID: ViewController.userID)
     }
     
     @objc func backgroundTapped() {
