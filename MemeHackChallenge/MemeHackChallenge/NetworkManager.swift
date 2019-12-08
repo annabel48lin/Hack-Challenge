@@ -11,9 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManger {
-    private static let endpoint = "http://104.196.33.218"
-    //"http://104.196.33.218"
-    //"http://0.0.0.0:5000"
+    private static let endpoint = "http://0.0.0.0:5000"
     static var signUpResult: Bool = false
     static var signInResult: Bool = false
     
@@ -30,7 +28,6 @@ class NetworkManger {
                     }
                 }
             case .failure(let error):
-                print("hi")
                 print(error.localizedDescription)
             }
         }
@@ -65,7 +62,6 @@ class NetworkManger {
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(CreateMemeResponseData.self, from: data) {
                     // STORE INFO
-                    //userData.data.url
                     print(userData.data)
                 }
             case .failure(let error):
@@ -90,13 +86,14 @@ class NetworkManger {
         }
     }
     
+    //i just added this func 
     static func signIn(username: String, password: String) {
         let parameters: [String: Any] = [
             "username": username,
             "password": password
         ]
         
-        let url: String = "\(endpoint)/api/user/signin/"
+        let url: String = "\(endpoint)/api/user/signin"
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData {
             response in
             switch response.result {
