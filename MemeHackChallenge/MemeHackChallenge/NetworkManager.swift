@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManger {
-    private static let endpoint = "http://0.0.0.0:5000"
+    private static let endpoint = "http://104.196.33.218"
     static var signUpResult: Bool = false
     static var signInResult: Bool = false
     
