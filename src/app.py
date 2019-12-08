@@ -3,10 +3,6 @@ import requests
 from db import db, User, Meme
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
-#from sqlalchemy.sql import select
-#from sqlalchemy import create_engine
-#from sqlalchemy import inspect
-#from sqlalchemy.orm.session._SessionClassMethods
 
 
 db_filename = 'memeapp.db'
@@ -67,8 +63,6 @@ def create_meme(user_id):
     font = post_body.get('font')
     name = post_body.get('name')
     print(name)
-
-    #http://api.imgflip.com/caption_image?template_id=16464531&text0=when you're bad at everything&text1=hello&font="impact"&username=annabel48lin&password=helloworld
 
     toSend = 'http://api.imgflip.com/caption_image?'
     toSend += 'template_id=' + str(template_id) + '&'
