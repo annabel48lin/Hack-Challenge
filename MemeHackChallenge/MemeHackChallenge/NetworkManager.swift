@@ -13,6 +13,7 @@ import SwiftyJSON
 class NetworkManger {
     private static let endpoint = "http://0.0.0.0:5000"
     static var signUpResult: Bool = false
+    static var signInResult: Bool = false
     
     static func getMemes(completion: @escaping ([Meme]) -> Void) {
         Alamofire.request(endpoint + "/api/users/", method: .get).validate().responseData { response in
@@ -87,16 +88,24 @@ class NetworkManger {
     
     //i just added this func 
     static func signIn(username: String, password: String) {
+        let parameters: [String: Any] = [
+            "username": username,
+            "password": password
+        ]
+        
         let url: String = "\(endpoint)/api/user/signin"
-        Alamofire.request(url, method: .delete, encoding: JSONEncoding.default).validate().responseData { response in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData {
+            response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(SignInResponseData.self, from: data) {
                     print(userData.data.id)
                 }
+                signInResult = true
             case .failure(let error):
                 print(error.localizedDescription)
+                signInResult = false
             }
         }
     }

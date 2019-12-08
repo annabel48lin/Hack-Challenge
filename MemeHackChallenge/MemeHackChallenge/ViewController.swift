@@ -16,12 +16,15 @@ class ViewController: UIViewController {
     var passwordTextField: UITextField!
     var loginButton: UIButton!
     var signupButton: UIButton!
+    var invalidName: UIAlertController!
+    var failed: UIAlertController!
     
     static var username: String = ""
     static var password: String = ""
     static var userID: Int = 0 
     
     var temp: [Meme] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +101,9 @@ class ViewController: UIViewController {
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(signupButton)
     
+        invalidName = UIAlertController(title: "Invalid Input!", message: "Username or password cannot be empty", preferredStyle: .alert)
+        failed = UIAlertController(title: "Login Failed", message: "Username and password may not exist", preferredStyle: .alert)
+        
         setUpConstraints()
     }
     
@@ -145,12 +151,39 @@ class ViewController: UIViewController {
     
     @objc func loginAction() {
         let newMeme = MemeHistoryViewController()
-        navigationController?.pushViewController(newMeme, animated: true)
-        NetworkManger.signup(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
+        //navigationController?.pushViewController(newMeme, animated: true)
+        //NetworkManger.signIn(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
+        //NetworkManger.signup(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
+        
+        let u: String = userNameTextField.text ?? ""
+        let p: String = passwordTextField.text ?? ""
+        if u == "" || p == "" {
+            self.present(invalidName, animated: true) {
+            self.invalidName.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+            }
+            return
+        } else {
+            NetworkManger.signIn(username: u, password: p)
+    
+            print(NetworkManger.signInResult)
+            
+            if NetworkManger.signInResult == true {
+                navigationController?.pushViewController(newMeme, animated: true)
+            } else {
+                self.present(failed, animated: true) { self.failed.view.superview?.subviews[0].addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.backgroundTapped)))
+                }
+            }
+        }
+        
     }
     
     @objc func signupAction() {
         let signupView = SignUpViewController()
         navigationController?.pushViewController(signupView, animated: true)
     }
+    
+    @objc func backgroundTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
