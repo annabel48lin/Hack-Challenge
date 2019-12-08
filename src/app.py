@@ -19,6 +19,7 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
+@app.route('/')
 @app.route('/api/users/')
 def get_users():
     users = User.query.all()
