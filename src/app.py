@@ -9,7 +9,7 @@ from flask_sqlalchemy import SQLAlchemy
 #from sqlalchemy.orm.session._SessionClassMethods
 
 
-db_filename = 'cms_sim.db'
+db_filename = 'memeapp.db'
 app = Flask(__name__)
 imgflipUsername = "annabel48lin"
 imgflipPassword = "helloworld"
@@ -52,53 +52,6 @@ def signin():
     post_body = json.loads(request.data)
     username = post_body.get('username')
     password = post_body.get('password')
-
-
-    rightpassword, = db.session.query(User.password).filter_by(username=username).first()
-    print(rightpassword)
-    
-
-    user = User.query.filter_by(username = username).first()
-
-    if getattr(user, 'password') == password:
-        print("works")
-        return json.dumps({'success': True, 'data': u.serialize()}), 200
-
-
-    for attr, column in inspect(user.__class__).c.items():
-        if column.name == 'password':
-            print(getattr(user, 'password'))
-            if getattr(user, 'password') == password:
-                return json.dumps({'success': True, 'data': u.serialize()}), 200
-
-    print('stopped')
-
-    
-    users = User.query.filter_by(password = password).all()
-
-    print(user.password())
-
-    for u in users:
-        
-        print("hello")
-        print(u['username'])
-        if u['username'] == username:
-            return json.dumps({'success': True, 'data': u.serialize()}), 200
-
-
-    
-    #s = select([User]).where(User.username == username and User.password == password)
-    #engine = create_engine('sqlite:///:memory:', echo=True)
-    #conn = engine.connect()
-    #result = conn.execute(s)
-    #for row in result:
-     #   return json.dumps({'success': True, 'data': row.serialize()}), 200
-    #print(user.password())
-    #if not user:
-        #return json.dumps({'success': False, 'error': 'Wrong username!'}), 401
-    #if password is user.password():
-    #return json.dumps({'success': True, 'data': user.serialize()}), 200
-    return json.dumps({'success': False, 'error': 'Wrong password!'}), 401
 
 @app.route('/api/user/<int:user_id>/create/', methods = ['POST'])
 def create_meme(user_id):
@@ -145,15 +98,18 @@ def create_meme(user_id):
 
 
 
-@app.route('/api/user/memes/<int:meme_id>/', methods = ['DELETE'])
-def delete_meme(meme_id):
+@app.route('/api/user/<int:user_id>/memes/<int:meme_id>/', methods = ['DELETE'])
+def delete_meme(meme_id, user_id):
     meme = Meme.query.filter_by(id = meme_id).first()
     if not meme:
         return json.dumps({'success': False, 'error': 'Meme does not exist!'}), 404
 
-    db.session.delete(meme)
-    db.session.commit()
-    return json.dumps({'success': True}), 201
+    if (meme.creator_id == user_id):
+        db.session.delete(meme)
+        db.session.commit()
+        return json.dumps({'success': True}), 201
+    return json.dumps({'success': False, 'error': 'You did not create this meme!'}), 401
+
 
 
 if __name__ == '__main__':
