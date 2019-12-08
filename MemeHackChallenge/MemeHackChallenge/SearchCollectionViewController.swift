@@ -19,11 +19,12 @@ class SearchCollectionViewController: UICollectionViewController, UISearchResult
                             print(results)
                         }
                     })
-            }
+                }
         }
     }
     
     var searchCollection: UICollectionView!
+    var searchResult: [Meme] = []
     let searchCellReuseIdentifier = "searchCellReuseIdentifier"
     
     override func viewDidLoad() {
@@ -56,21 +57,17 @@ class SearchCollectionViewController: UICollectionViewController, UISearchResult
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return searchResult.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = searchCollection.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
+        cell.congifure(for: searchResult[indexPath.row])
         return cell
     }
 
