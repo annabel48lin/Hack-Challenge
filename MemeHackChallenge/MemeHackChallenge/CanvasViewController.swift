@@ -46,8 +46,6 @@ class CanvasViewController: UIViewController {
         searchResult = SearchCollectionViewController()
         
         searchBar = UISearchController(searchResultsController: nil)
-//        searchBar.searchResultsUpdater = memeImage
-        searchBar.dimsBackgroundDuringPresentation = false
         searchBar.searchBar.placeholder = "Want a meme? Search for one!"
         searchBar.searchResultsUpdater = searchResult
         searchBar.searchBar.sizeToFit()

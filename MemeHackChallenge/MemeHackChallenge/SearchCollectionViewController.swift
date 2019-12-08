@@ -67,7 +67,7 @@ class SearchCollectionViewController: UICollectionViewController, UISearchResult
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = searchCollection.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
-        cell.congifure(for: searchResult[indexPath.row])
+        cell.config(for: searchResult[indexPath.row])
         return cell
     }
 
