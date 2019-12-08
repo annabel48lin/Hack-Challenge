@@ -130,7 +130,7 @@ extension MemeHistoryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = memeCollection.dequeueReusableCell(withReuseIdentifier: memeCellReuseIdentifier, for: indexPath) as! MemeCollectionViewCell
-        cell.configure(for: memeHistory[indexPath.row])
+        cell.config(for: memeHistory[indexPath.row])
         return cell
     }
 }
