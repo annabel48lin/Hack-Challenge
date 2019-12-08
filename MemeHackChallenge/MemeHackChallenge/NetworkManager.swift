@@ -69,14 +69,31 @@ class NetworkManger {
         }
     }
     
-    static func delete(memeID: Int, username: String, password: String) {
-        let url: String = "\(endpoint)/api/user/memes/\(memeID)/"
+    //I added userID as a parameter ... so we will have to change our UI a bit
+    static func delete(memeID: Int, username: String, password: String, userID: Int) {
+        let url: String = "\(endpoint)/api/user/\(userID)/memes/\(memeID)/"
         Alamofire.request(url, method: .delete, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(DeleteResponse.self, from: data) {
                     print(userData.success)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    //i just added this func 
+    static func signIn(username: String, password: String) {
+        let url: String = "\(endpoint)/api/user/signin"
+        Alamofire.request(url, method: .delete, encoding: JSONEncoding.default).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let userData = try? jsonDecoder.decode(SignInResponseData.self, from: data) {
+                    print(userData.data.id)
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -124,4 +141,15 @@ struct CreateMemeResponse: Codable {
 
 struct DeleteResponse: Codable {
     let success: Bool
+}
+
+struct SignInResponseData: Codable {
+    let success: Bool
+    let data: SignInResponse
+}
+
+struct SignInResponse: Codable {
+    let id: Int
+    let username: String
+    let memes: [String]
 }
