@@ -12,7 +12,7 @@ class RestaurantViewController: UIViewController {
     
     var restaurantCollection: UICollectionView!
     var allRestaurants: [Restaurant] = []
-    var searchResult: [Meme] = [Meme(URL: "https://i.imgflip.com/3il2cu.jpg", imageID: "1", name: "Natasha", tID: "11102"), Meme(URL: "https://i.imgflip.com/3il2cu.jpg", imageID: "2", name: "Claire", tID: "111111") ]
+    var searchResult: [Meme] = []
     var searchBar: UISearchController!
     var memeImage: UIImageView!
     var topTextField: UITextField!
@@ -79,7 +79,7 @@ class RestaurantViewController: UIViewController {
         memeImage.image = UIImage(named: nameOfImage)
         memeImage.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(memeImage)
-       
+        
         setUpConstraints()
     }
     
@@ -121,7 +121,11 @@ class RestaurantViewController: UIViewController {
     }
 
     func createRestaurants() {
-        
+        for i in 0..<NetworkManger.urlsTemps.count {
+            //urlsTemps.append(Array(userData.data.values)[i]["url"]!)
+            var newmeme = Meme(URL: NetworkManger.urlsTemps[i], imageID:"1", name: "meme", tID: NetworkManger.idTemps[i])
+            searchResult.append(newmeme)
+        }
     }
 }
 
@@ -164,9 +168,16 @@ extension RestaurantViewController: UICollectionViewDelegate {
 extension RestaurantViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
+            for i in 0..<NetworkManger.urlsTemps.count {
+                //urlsTemps.append(Array(userData.data.values)[i]["url"]!)
+                var newmeme = Meme(URL: NetworkManger.urlsTemps[i], imageID:"1", name: "meme", tID: NetworkManger.idTemps[i])
+                searchResult.append(newmeme)
+            }
                 if !searchText.isEmpty {
                     NetworkManger.searchMemes(fromTitle: searchText)
                 }
+            restaurantCollection.reloadData()
+            
         }
     }
 }

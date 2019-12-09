@@ -35,7 +35,7 @@ class NetworkManger {
                         urlsTemps.append(Array(userData.data.values)[i]["url"]!)
                         idTemps.append(Array(userData.data.values)[i]["id"]!)
                     }
-                    print(Array(userData.data.values)[0]["url"])
+                    //print(Array(userData.data.values)[0]["url"])
                     
                 }
             case .failure(let error):
