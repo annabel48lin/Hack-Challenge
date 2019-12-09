@@ -84,7 +84,8 @@ class RestaurantViewController: UIViewController {
     }
     
     @objc func finishAction() {
-        NetworkManger.create(userID: ViewController.userID, templateID: tempID, text0: topTextField.text ?? " ", text1: bottomTextField.text ?? " ")
+        print(NetworkManger.userID)
+        NetworkManger.create(userID: NetworkManger.userID, templateID: NetworkManger.templateID, text0: topTextField.text ?? " ", text1: bottomTextField.text ?? " ")
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -158,7 +159,7 @@ extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //selectedRow = indexPath.row
         nameOfImage = searchResult[indexPath.row].URL
-        tempID = searchResult[indexPath.row].imageID
+        NetworkManger.templateID = searchResult[indexPath.row].templateID
         let url = URL(string: nameOfImage)!
         let data = try? Data(contentsOf: url)
         memeImage.image = UIImage(data: data!)

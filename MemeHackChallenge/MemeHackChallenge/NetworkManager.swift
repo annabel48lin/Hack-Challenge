@@ -20,6 +20,7 @@ class NetworkManger {
     static var text1: String = ""
     static var urlsTemps: [String] = []
     static var idTemps: [String] = []
+    static var userID: Int = 0
 
     
     
@@ -137,6 +138,7 @@ class NetworkManger {
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(SignInResponseData.self, from: data) {
                     signInResult = true
+                    userID = userData.data.id
                     print(signInResult)
                     print(userData.data.id)
                 }
