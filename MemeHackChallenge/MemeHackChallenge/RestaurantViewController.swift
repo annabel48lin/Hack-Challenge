@@ -12,11 +12,14 @@ class RestaurantViewController: UIViewController {
     
     var restaurantCollection: UICollectionView!
     var allRestaurants: [Restaurant] = []
-
-    var mealTypeFilterCollection: UICollectionView!
-    var foodTypeFilterCollection: UICollectionView!
-    var priceFilterCollection: UICollectionView!
-    var starFilterCollection: UICollectionView!
+    var searchResult: [Meme] = [Meme(URL: "https://i.imgflip.com/3il2cu.jpg", imageID: "1", name: "Natasha", tID: "11102"), Meme(URL: "https://i.imgflip.com/3il2cu.jpg", imageID: "2", name: "Claire", tID: "111111") ]
+    var searchBar: UISearchController!
+    var memeImage: UIImageView!
+    var topTextField: UITextField!
+    var bottomTextField: UITextField!
+    var finishButton: UIButton!
+    var nameOfImage: String = "https://i.imgflip.com/3il2cu.jpg"
+    var tempID: String = ""
     
     let restaurantCellReuseIdentifier = "restaurantCellReuseIdentifier"
 
@@ -36,53 +39,103 @@ class RestaurantViewController: UIViewController {
         restaurantLayout.minimumInteritemSpacing = padding
         
         restaurantCollection = UICollectionView(frame: .zero, collectionViewLayout: restaurantLayout)
-        restaurantCollection.backgroundColor = .black
+        restaurantCollection.backgroundColor = .systemPink
         restaurantCollection.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: restaurantCellReuseIdentifier)
         restaurantCollection.translatesAutoresizingMaskIntoConstraints = false
         restaurantCollection.dataSource = self
         restaurantCollection.delegate = self
         view.addSubview(restaurantCollection)
+        
+        searchBar = UISearchController(searchResultsController: nil)
+        searchBar.searchBar.placeholder = "Want a meme? Search for one!"
+        searchBar.searchResultsUpdater = self
+        searchBar.searchBar.sizeToFit()
+        searchBar.hidesNavigationBarDuringPresentation = false
+        searchBar.obscuresBackgroundDuringPresentation = false
+        self.navigationItem.titleView = searchBar.searchBar
+        //view.addSubview(searchBar)
+        
+        topTextField = UITextField()
+        topTextField.text = "hellooooo"
+        topTextField.clearsOnBeginEditing = true
+        topTextField.borderStyle = .roundedRect
+        topTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(topTextField)
+        
+        bottomTextField = UITextField()
+        bottomTextField.text = "byeee"
+        bottomTextField.clearsOnBeginEditing = true
+        bottomTextField.borderStyle = .roundedRect
+        bottomTextField.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bottomTextField)
+        
+        finishButton = UIButton()
+        finishButton.translatesAutoresizingMaskIntoConstraints = false
+        finishButton.setTitle("Finish", for: .normal)
+        finishButton.addTarget(self, action: #selector(finishAction), for: .touchUpInside)
+        view.addSubview(finishButton)
+        
+        memeImage = UIImageView()
+        memeImage.image = UIImage(named: nameOfImage)
+        memeImage.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(memeImage)
        
         setUpConstraints()
+    }
+    
+    @objc func finishAction() {
+        NetworkManger.create(userID: ViewController.userID, templateID: tempID, text0: topTextField.text ?? " ", text1: bottomTextField.text ?? " ")
+        self.navigationController?.popViewController(animated: true)
     }
     
     func setUpConstraints() {
         NSLayoutConstraint.activate([
             restaurantCollection.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
             restaurantCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
-            restaurantCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            restaurantCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -padding*60),
             restaurantCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
+        ])
+        
+        NSLayoutConstraint.activate([
+            topTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topTextField.topAnchor.constraint(equalTo: restaurantCollection.bottomAnchor, constant: 30)
+        ])
+        
+        NSLayoutConstraint.activate([
+            bottomTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bottomTextField.topAnchor.constraint(equalTo: topTextField.bottomAnchor, constant: 400)
+        ])
+        
+        NSLayoutConstraint.activate([
+            finishButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            finishButton.topAnchor.constraint(equalTo: bottomTextField.topAnchor, constant: 40)
+        ])
+        
+        NSLayoutConstraint.activate([
+            memeImage.topAnchor.constraint(equalTo: topTextField.bottomAnchor, constant: 30),
+            memeImage.bottomAnchor.constraint(equalTo: bottomTextField.topAnchor, constant: -30),
+            memeImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            memeImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            memeImage.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 
     func createRestaurants() {
-        let CTB = Restaurant(name: "Collegetown Bagels", imagePath: "CTB", mealType: ["Breakfast", "Lunch"], foodType: "American", star: "4 ✰✰✰✰", priceRange: "$", address: "415 College Ave Ithaca, NY 14850", phone: "(607) 273-0982", detail: "Bagels, Sandwiches, Coffee & Tea")
-        let apollo = Restaurant(name: "Apollo", imagePath: "apollo", mealType: ["Lunch", "Dinner"], foodType: "Chinese", star: "3 ✰✰✰", priceRange: "$", address: "407 College Ave Ithaca, NY 14850", phone: "(607) 272-1188", detail: "Buffet-style traditional Chinese dish")
-        let koko = Restaurant(name: "Koko", imagePath: "koko", mealType: ["Lunch", "Dinner"], foodType: "Korean", star: "3 ✰✰✰", priceRange: "$$", address: "321 College Ave Ithaca, NY 14850", phone: "(607) 277-8899", detail: "Traditional Korean dish (e.g. bibimbop, kalbi and bulgogi")
-        let littleThaiHouse = Restaurant(name: "Little Thai House", imagePath: "littleThaiHouse", mealType: ["Lunch", "Dinner"], foodType: "Thai", star: "3 ✰✰✰", priceRange: "$", address: "202 Dryden Ct Ithaca, NY 14850", phone: "(607) 273-1977", detail: "Buffet-style Thai dish")
-        let maruRamen = Restaurant(name: "Maru Ramen", imagePath: "maruRamen", mealType: ["Lunch", "Dinner"], foodType: "Japanese", star: "4 ✰✰✰✰", priceRange: "$$", address: "512 W State St Ithaca, NY 14850", phone: "(607) 339-0329", detail: "Ramen, Bars, Soul Food")
-        let saigonKitchen = Restaurant(name: "Saigon Kitchen", imagePath: "saigonKitchen", mealType: ["Lunch", "Dinner"], foodType: "Vietnamese", star: "4 ✰✰✰✰", priceRange: "$$", address: "526 W State St Ithaca, NY 14850", phone: "(607) 257-8881", detail: "Traditional Vietnamese dish!")
-        let deTastyHotPot = Restaurant(name: "De Tasty Hot Pot", imagePath: "deTastyHotPot", mealType: ["Lunch", "Dinner"], foodType: "Chinese", star: "3 ✰✰✰", priceRange: "$$", address: "422 Eddy St Ithaca, NY 14850", phone: "(607) 821-2312", detail: "Hot Pot, Dim Sum, Szechuan")
-        let fourSeason = Restaurant(name: "Four Seasons", imagePath: "fourSeason", mealType: ["Lunch", "Dinner"], foodType: "Korean", star: "3 ✰✰✰", priceRange: "$$", address: "404 Eddy St Ithaca, NY 14850", phone: "(607) 277-1117", detail: "Traditional Korean dish!")
-        let asianNoodleHouse = Restaurant(name: "Asian Noodle House", imagePath: "asianNoodleHouse", mealType: ["Lunch", "Dinner"], foodType: "Chinese", star: "3 ✰✰✰", priceRange: "$", address: "204 Dryden Rd Ithaca, NY 14850", phone: "(607) 272-9106", detail: "Tradition Chinese dish!")
-        let sangamIndianCuisine = Restaurant(name: "Sangam Indian Cuisine", imagePath: "sangamIndianCuisine", mealType: ["Lunch", "Dinner"], foodType: "Indian", star: "3 ✰✰✰", priceRange: "$$", address: "424 Eddy St Ithaca, NY 14850", phone: "(607) 273-1006", detail: "Indian, seafood")
-        let francosPizzeria = Restaurant(name: "Franco's Pizzeria", imagePath: "francosPizzeria", mealType: ["Lunch", "Dinner"], foodType: "Italian", star: "4 ✰✰✰✰", priceRange: "$", address: "508 W State St Ithaca, NY 14850", phone: "(607) 319-5132", detail: "Italian, pizza")
-        allRestaurants = [CTB, apollo, koko, littleThaiHouse, maruRamen, saigonKitchen, deTastyHotPot, fourSeason, asianNoodleHouse, sangamIndianCuisine, francosPizzeria]
+        
     }
 }
 
 extension RestaurantViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allRestaurants.count
+        return searchResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        
-        
-            let cell = restaurantCollection.dequeueReusableCell(withReuseIdentifier: restaurantCellReuseIdentifier, for: indexPath) as! RestaurantCollectionViewCell
-            cell.configure(for: allRestaurants[indexPath.row])
-            return cell
+        let cell = restaurantCollection.dequeueReusableCell(withReuseIdentifier: restaurantCellReuseIdentifier, for: indexPath) as! RestaurantCollectionViewCell
+        cell.configure(for: searchResult[indexPath.row] )
+        return cell
         
     }
 }
@@ -91,30 +144,29 @@ extension RestaurantViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
         UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 80, height: 80)
         
-        let height: CGFloat = 25
-        
-        if collectionView == self.restaurantCollection {
-            let size = (restaurantCollection.frame.width - 1 * padding) / 2.0
-            return CGSize(width: size, height: size)
-        } else if collectionView == self.mealTypeFilterCollection {
-            return CGSize(width: 65, height: height)
-        } else if collectionView == self.foodTypeFilterCollection {
-            return CGSize(width: 70, height: height)
-        } else if collectionView == self.priceFilterCollection {
-            return CGSize(width: 50, height: height)
-        } else {
-            return CGSize(width: 80, height: height)
-        }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: restaurantCollection.frame.width, height: headerHeight)
-//    }
 }
 
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        restaurantCollection.reloadData()
+        //selectedRow = indexPath.row
+        nameOfImage = searchResult[indexPath.row].URL
+        tempID = searchResult[indexPath.row].imageID
+        let url = URL(string: nameOfImage)!
+        let data = try? Data(contentsOf: url)
+        memeImage.image = UIImage(data: data!)
+    }
+}
+
+extension RestaurantViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+                if !searchText.isEmpty {
+                    NetworkManger.searchMemes(fromTitle: searchText)
+                }
+        }
     }
 }

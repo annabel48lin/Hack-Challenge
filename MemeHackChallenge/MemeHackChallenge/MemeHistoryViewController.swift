@@ -12,7 +12,7 @@ class MemeHistoryViewController: UIViewController {
     
     var memeCollection: UICollectionView!
     let memeCellReuseIdentifier = "memeCellReuseIdentifier"
-    var memeHistory: [Meme]!
+    var memeHistory: [Meme] = []
     var createButton: UIButton!
     var deleteButton: UIButton!
     var deleteTextField: UITextField!
@@ -89,14 +89,20 @@ class MemeHistoryViewController: UIViewController {
     
     func createMemeHistory() {
         
-        /**
-         At this point, our UICollectionView is completed but empty because we'll need to collaborate with the Backend to actually extract the image URL from the API
-         */
         
-        // let example: Meme = Meme(URL: "https://i.imgflip.com/1bij.jpg", imageID: "61579", name: "One Does Not Simply")
-        // memeHistory = [example]
+        for i in 0..<NetworkManger.urlsTemps.count {
+            //urlsTemps.append(Array(userData.data.values)[i]["url"]!)
+            var newmeme = Meme(URL: NetworkManger.urlsTemps[i], imageID:"1", name: "meme", tID: NetworkManger.idTemps[i])
+            memeHistory.append(newmeme)
+        }
+//
+//        let url = URL(string: nameOfImage)!
+//        let data = try? Data(contentsOf: url)
+//        memeImage.image = UIImage(data: data!)
+
         
-        memeHistory = []
+       // memeHistory = []
+        memeCollection.reloadData()
     }
     
     @objc func createAction() {
@@ -119,6 +125,7 @@ class MemeHistoryViewController: UIViewController {
     @objc func backgroundTapped() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 }
 

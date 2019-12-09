@@ -14,11 +14,11 @@ class SearchCollectionViewController: UICollectionViewController, UISearchResult
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
                 if !searchText.isEmpty {
-                    NetworkManger.searchMeme(fromTitle: searchText, { results in
-                        DispatchQueue.main.async {
-                            print(results)
-                        }
-                    })
+//                    NetworkManger.searchMeme(fromTitle: searchText, { results in
+//                        DispatchQueue.main.async {
+//                            print(results)
+//                        }
+//                    })
                 }
         }
     }

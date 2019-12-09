@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     static var username: String = ""
     static var password: String = ""
-    static var userID: Int = 0 
+    static var userID: Int = 1
     
     var temp: [Meme] = []
     

@@ -11,25 +11,35 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManger {
-    private static let endpoint = "http://104.196.33.218" //"http://0.0.0.0:5000"
+    private static let endpoint = "http://34.73.20.1"
 
     static var signUpResult: Bool = false
     static var signInResult: Bool = false
+    static var templateID: String = ""
+    static var text0: String = ""
+    static var text1: String = ""
+    static var urlsTemps: [String] = []
+    static var idTemps: [String] = []
+
     
-    static func searchMeme(fromTitle title: String, _ didGetRecipes: @escaping ([UIImage]) -> Void) {
-        Alamofire.request("https://imgflip.com/memesearch?q=" + title, method: .get).validate().responseJSON { response in
+    
+    static func searchMemes(fromTitle title: String) {
+        Alamofire.request(endpoint + "/api/templates/", method: .get, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
-                var searchResult: [UIImage] = []
-                if let json: JSON? = JSON(data) {
-                    print(data)
-//                    for i in 0..<json!["results"].count {
-//                        searchResult.append(Recipe(title: json!["results"][i]["title"].stringValue, ingredients: json!["results"][i]["ingredients"].stringValue))
-//                    }
+                let jsonDecoder = JSONDecoder()
+                if let userData = try? jsonDecoder.decode(templatesResponse.self, from: data) {
+//                    var a: [String: [String:String]]= userData.data.values
+                    
+                    for i in 0..<(Array(userData.data.values)).count {
+                        urlsTemps.append(Array(userData.data.values)[i]["url"]!)
+                        idTemps.append(Array(userData.data.values)[i]["id"]!)
+                    }
+                    print(Array(userData.data.values)[0]["url"])
+                    
                 }
-                didGetRecipes(searchResult)
             case .failure(let error):
-                print(error)
+                print(error.localizedDescription)
             }
         }
     }
@@ -73,14 +83,23 @@ class NetworkManger {
         }
     }
     
-    static func create(userID: Int, username: String, password: String) {
+    static func create(userID: Int, templateID: String, text0: String, text1: String) {
+        let parameters: [String: Any] = [
+            "template_id": Int(templateID),
+            "text0": text0,
+            "text1": text1,
+            "font": "arial",
+            "name": "meme"
+        ]
+        print(userID)
         let url: String = "\(endpoint)/api/user/\(userID)/create/"
-        Alamofire.request(url, method: .post, encoding: JSONEncoding.default).validate().responseData { response in
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(CreateMemeResponseData.self, from: data) {
                     // STORE INFO
+                    print(NetworkManger.templateID)
                     print(userData.data)
                 }
             case .failure(let error):
@@ -89,7 +108,7 @@ class NetworkManger {
         }
     }
     
-    //I added userID as a parameter ... so we will have to change our UI a bit
+
     static func delete(memeID: Int, username: String, password: String, userID: Int) {
         let url: String = "\(endpoint)/api/user/\(userID)/memes/\(memeID)/"
         Alamofire.request(url, method: .delete, encoding: JSONEncoding.default).validate().responseData { response in
@@ -139,10 +158,10 @@ struct memeHistory: Codable {
 
 struct signUp: Codable {
     let success: Bool
-    let data: Data
+    let data: signUpData
 }
 
-struct Data: Codable {
+struct signUpData: Codable {
     let username: String
     let memes: [String]
 }
@@ -181,3 +200,9 @@ struct SignInResponse: Codable {
     let username: String
     let memes: [String]
 }
+
+struct templatesResponse: Codable {
+    let success: Bool
+    let data: [String: [String:String]]
+}
+

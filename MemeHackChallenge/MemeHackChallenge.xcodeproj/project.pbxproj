@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		696082914F3472CE7E3405A6 /* Pods_MemeHackChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B79118F9FCAC70A2F0075A6A /* Pods_MemeHackChallenge.framework */; };
-		6ECF0E68239B12B500B881FA /* CanvasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ECF0E67239B12B500B881FA /* CanvasViewController.swift */; };
 		A2BCFC8D2ACCEEF727FB8063 /* Pods_MemeHackChallengeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 107E348B78CF8C76B45E6E60 /* Pods_MemeHackChallengeTests.framework */; };
 		AC9B9272000E88EF74AA3539 /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DD25CD4D21BFC0AE2AADBFF /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework */; };
 		E9478A742387831A00E20FE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478A732387831A00E20FE1 /* AppDelegate.swift */; };
@@ -52,7 +51,6 @@
 		1E83D508D1D10F8EE607F6E4 /* Pods-MemeHackChallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge.release.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge/Pods-MemeHackChallenge.release.xcconfig"; sourceTree = "<group>"; };
 		26274055E52DB0C8AC8DF46D /* Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4DD25CD4D21BFC0AE2AADBFF /* Pods_MemeHackChallenge_MemeHackChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeHackChallenge_MemeHackChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ECF0E67239B12B500B881FA /* CanvasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewController.swift; sourceTree = "<group>"; };
 		8C53313A1AD5157F56EA607D /* Pods-MemeHackChallengeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallengeTests.debug.xcconfig"; path = "Target Support Files/Pods-MemeHackChallengeTests/Pods-MemeHackChallengeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B79118F9FCAC70A2F0075A6A /* Pods_MemeHackChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MemeHackChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C862652D77838FE6BC8DB333 /* Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig"; path = "Target Support Files/Pods-MemeHackChallenge-MemeHackChallengeUITests/Pods-MemeHackChallenge-MemeHackChallengeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +157,7 @@
 			children = (
 				E9D4C1AD239DE3A20088F238 /* Restaurant.swift */,
 				E9D4C1AF239DE3A30088F238 /* RestaurantCollectionViewCell.swift */,
+				E9D4C1B3239DE3E10088F238 /* RestaurantViewController.swift */,
 				E9478A732387831A00E20FE1 /* AppDelegate.swift */,
 				E9478AA32387949D00E20FE1 /* MemeCollectionViewCell.swift */,
 				E9478AA72388702400E20FE1 /* Meme.swift */,
@@ -169,9 +168,7 @@
 				E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */,
 				E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */,
 				E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */,
-				6ECF0E67239B12B500B881FA /* CanvasViewController.swift */,
 				E9D4C1A9239DAE440088F238 /* SearchCollectionViewController.swift */,
-				E9D4C1B3239DE3E10088F238 /* RestaurantViewController.swift */,
 				E9D4C1B5239DE54C0088F238 /* Constants.swift */,
 			);
 			path = MemeHackChallenge;
@@ -434,7 +431,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9D4C1B0239DE3A30088F238 /* Restaurant.swift in Sources */,
-				6ECF0E68239B12B500B881FA /* CanvasViewController.swift in Sources */,
 				E9FECF7A239AEB0B0002FFB4 /* NetworkManager.swift in Sources */,
 				E9FECF7C239AFD340002FFB4 /* SignUpViewController.swift in Sources */,
 				E9478AAC2388742B00E20FE1 /* MemeHistoryViewController.swift in Sources */,
