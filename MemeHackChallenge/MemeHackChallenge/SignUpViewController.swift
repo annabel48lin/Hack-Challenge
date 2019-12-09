@@ -152,7 +152,8 @@ class SignUpViewController: UIViewController {
     
     @objc func backgroundTapAndView() {
         self.dismiss(animated: true, completion: nil)
-        navigationController?.popToRootViewController(animated: true)
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+        //navigationController?.popToRootViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
     }
 }

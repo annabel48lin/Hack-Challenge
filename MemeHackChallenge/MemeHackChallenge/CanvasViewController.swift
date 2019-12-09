@@ -110,8 +110,9 @@ extension ViewController: UICollectionViewDataSource {
 //            cell.delegate = self
 //            return cell
 //        }
+        return UICollectionViewCell() // tkae away later
     }
-
+}
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     
