@@ -100,7 +100,7 @@ class MemeHistoryViewController: UIViewController {
     }
     
     @objc func createAction() {
-        let canvasView = CanvasViewController()
+        let canvasView = RestaurantViewController()
         navigationController?.pushViewController(canvasView, animated: true)
     }
     
