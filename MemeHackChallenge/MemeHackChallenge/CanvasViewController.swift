@@ -8,8 +8,8 @@
 
 import UIKit
 
-class CanvasViewController: UIViewController {
-    
+class CanvasViewController: UIViewController { //, UICollectionViewDelegate, UICollectionViewDataSource, UISearchResultsUpdating {
+
     var memeImage: UIImageView!
     var topTextField: UITextField!
     var bottomTextField: UITextField!
@@ -17,7 +17,7 @@ class CanvasViewController: UIViewController {
     var searchBar: UISearchController!
     
     var searchCollection: UICollectionView!
-    var searchResult: [Meme] = []
+    var searchResult: [Meme] = [Meme(URL: "https://i.imgflip.com/3il2cu.jpg", imageID: "1", name: "Natasha")]
     let searchCellReuseIdentifier = "searchCellReuseIdentifier"
     
     override func viewDidLoad() {
@@ -25,7 +25,7 @@ class CanvasViewController: UIViewController {
         
         memeImage = UIImageView()
         
-        
+        view.backgroundColor = .systemPink
         topTextField = UITextField()
         topTextField.text = "hellooooo"
         topTextField.clearsOnBeginEditing = true
@@ -55,14 +55,14 @@ class CanvasViewController: UIViewController {
         searchCollection.backgroundColor = .white
         searchCollection.register(MemeCollectionViewCell.self, forCellWithReuseIdentifier: searchCellReuseIdentifier)
         searchCollection.translatesAutoresizingMaskIntoConstraints = false
-        searchCollection.dataSource = self as! UICollectionViewDataSource
-        searchCollection.delegate = self as! UICollectionViewDelegate
+        searchCollection.dataSource = self
+        searchCollection.delegate = self
         view.addSubview(searchCollection)
         
-        searchBar = UISearchController(searchResultsController: nil)
-        searchBar.searchBar.placeholder = "Want a meme? Search for one!"
-        searchBar.searchResultsUpdater = searchCollection as! UISearchResultsUpdating
-        searchBar.searchBar.sizeToFit()
+//        searchBar = UISearchController(searchResultsController: nil)
+//        searchBar.searchBar.placeholder = "Want a meme? Search for one!"
+//        searchBar.searchResultsUpdater = self
+//        searchBar.searchBar.sizeToFit()
         
         setUpConstraints()
     }
@@ -97,23 +97,7 @@ class CanvasViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//            let cell = starFilterCollection.dequeueReusableCell(withReuseIdentifier: filterCellReuseIdentifier, for: indexPath) as! FilterCollectionViewCell
-//            cell.configure(for: searchResult[indexPath.row])
-//            cell.delegate = self
-//            return cell
-//        }
-        return UICollectionViewCell() // tkae away later
-    }
-}
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
+extension CanvasViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
         UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -121,8 +105,42 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.reloadData()
+extension CanvasViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return searchResult.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = searchCollection.dequeueReusableCell(withReuseIdentifier: searchCellReuseIdentifier, for: indexPath) as! MemeCollectionViewCell
+        cell.config(for: searchResult[indexPath.row])
+        cell.backgroundColor = .blue
+        //cell.delegate = self
+        return cell
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        searchCollection.reloadData()
+//    }
+  
+}
+
+extension CanvasViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+                if !searchText.isEmpty {
+                    NetworkManger.searchMeme(fromTitle: searchText, { results in
+                        DispatchQueue.main.async {
+                            print(results)
+                        }
+                    })
+                }
+        }
+    }
+}
+
+extension CanvasViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        searchCollection.reloadData()
     }
 }
