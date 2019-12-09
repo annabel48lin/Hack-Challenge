@@ -45,7 +45,7 @@ class MemeCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func configure(for m: Meme) {
+    func config(for m: Meme) {
         meme.image = UIImage(named: m.URL) // creating image using URL from Backend
     }
     

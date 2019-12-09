@@ -11,8 +11,28 @@ import Alamofire
 import SwiftyJSON
 
 class NetworkManger {
-    private static let endpoint = "http://104.196.33.218/" //"http://0.0.0.0:5000"
+    private static let endpoint = "http://104.196.33.218" //"http://0.0.0.0:5000"
+
     static var signUpResult: Bool = false
+    static var signInResult: Bool = false
+    
+    static func searchMeme(fromTitle title: String, _ didGetRecipes: @escaping ([UIImage]) -> Void) {
+        Alamofire.request("https://imgflip.com/memesearch?q=" + title, method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let data):
+                var searchResult: [UIImage] = []
+                if let json: JSON? = JSON(data) {
+                    print(data)
+//                    for i in 0..<json!["results"].count {
+//                        searchResult.append(Recipe(title: json!["results"][i]["title"].stringValue, ingredients: json!["results"][i]["ingredients"].stringValue))
+//                    }
+                }
+                didGetRecipes(searchResult)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
     static func getMemes(completion: @escaping ([Meme]) -> Void) {
         Alamofire.request(endpoint + "/api/users/", method: .get).validate().responseData { response in
@@ -69,8 +89,9 @@ class NetworkManger {
         }
     }
     
-    static func delete(memeID: Int, username: String, password: String) {
-        let url: String = "\(endpoint)/api/user/memes/\(memeID)/"
+    //I added userID as a parameter ... so we will have to change our UI a bit
+    static func delete(memeID: Int, username: String, password: String, userID: Int) {
+        let url: String = "\(endpoint)/api/user/\(userID)/memes/\(memeID)/"
         Alamofire.request(url, method: .delete, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
@@ -83,7 +104,32 @@ class NetworkManger {
             }
         }
     }
-    
+
+    static func signIn(username: String, password: String) {
+        print("inside signin")
+        let parameters: [String: Any] = [
+            "username": username,
+            "password": password
+        ]
+            
+        let url: String = "\(endpoint)/api/user/signin/"
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                print("inside success switch")
+                let jsonDecoder = JSONDecoder()
+                if let userData = try? jsonDecoder.decode(SignInResponseData.self, from: data) {
+                    print(userData.data.id)
+                }
+                signInResult = true
+
+            case .failure(let error):
+                print("inside failure switch")
+                print(error.localizedDescription)
+                signInResult = false
+            }
+        }
+    }
     
 }
 
@@ -124,4 +170,15 @@ struct CreateMemeResponse: Codable {
 
 struct DeleteResponse: Codable {
     let success: Bool
+}
+
+struct SignInResponseData: Codable {
+    let success: Bool
+    let data: SignInResponse
+}
+
+struct SignInResponse: Codable {
+    let id: Int
+    let username: String
+    let memes: [String]
 }
