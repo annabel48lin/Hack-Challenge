@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var signupButton: UIButton!
     var invalidName: UIAlertController!
     var failed: UIAlertController!
+    var newMeme: MemeHistoryViewController!
     
     static var username: String = ""
     static var password: String = ""
@@ -149,8 +150,9 @@ class ViewController: UIViewController {
         ])
     }
     
+    
     @objc func loginAction() {
-        let newMeme = MemeHistoryViewController()
+        newMeme = MemeHistoryViewController()
         let u: String = userNameTextField.text ?? ""
         let p: String = passwordTextField.text ?? ""
         if u == "" || p == "" {

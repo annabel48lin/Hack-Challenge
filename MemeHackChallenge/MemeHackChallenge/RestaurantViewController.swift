@@ -11,7 +11,6 @@ import UIKit
 class RestaurantViewController: UIViewController {
     
     var restaurantCollection: UICollectionView!
-    var allRestaurants: [Restaurant] = []
     var searchResult: [Meme] = []
     var searchBar: UISearchController!
     var memeImage: UIImageView!
@@ -86,6 +85,14 @@ class RestaurantViewController: UIViewController {
     @objc func finishAction() {
         print(NetworkManger.userID)
         NetworkManger.create(userID: NetworkManger.userID, templateID: NetworkManger.templateID, text0: topTextField.text ?? " ", text1: bottomTextField.text ?? " ")
+        
+//        NetworkManger.getMemes(completion: { meme in
+//            self.searchResult = meme
+//            DispatchQueue.main.async {
+//                MemeHistoryViewController.createMemeHistory()
+//            }
+//        })
+        
         self.navigationController?.popViewController(animated: true)
     }
     

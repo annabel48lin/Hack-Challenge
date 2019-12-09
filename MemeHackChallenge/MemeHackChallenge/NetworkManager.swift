@@ -21,6 +21,7 @@ class NetworkManger {
     static var urlsTemps: [String] = []
     static var idTemps: [String] = []
     static var userID: Int = 0
+    static var totalMemes: [String] = []
 
     
     
@@ -55,6 +56,8 @@ class NetworkManger {
                 if let json: JSON? = JSON(data) {
                     for i in 0..<json!["results"].count {
                         print(json!["results"][i]["memes"].stringValue)
+                        print(json!["results"][i]["memes"]["url"])
+                        //totalMemes.append(json!["results"][i]["memes"]["url"].stringValue)
                     }
                 }
             case .failure(let error):

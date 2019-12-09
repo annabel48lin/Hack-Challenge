@@ -10,9 +10,9 @@ import UIKit
 
 class MemeHistoryViewController: UIViewController {
     
-    var memeCollection: UICollectionView!
+    public var memeCollection: UICollectionView!
     let memeCellReuseIdentifier = "memeCellReuseIdentifier"
-    var memeHistory: [Meme] = []
+    public var memeHistory: [Meme] = []
     var createButton: UIButton!
     var invalidName: UIAlertController!
     
@@ -64,8 +64,6 @@ class MemeHistoryViewController: UIViewController {
     }
     
     func createMemeHistory() {
-        
-        
         for i in 0..<NetworkManger.urlsTemps.count {
             //urlsTemps.append(Array(userData.data.values)[i]["url"]!)
             var newmeme = Meme(URL: NetworkManger.urlsTemps[i], imageID:"1", name: "meme", tID: NetworkManger.idTemps[i])
