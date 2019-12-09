@@ -50,6 +50,15 @@ def signin():
     username = post_body.get('username')
     password = post_body.get('password')
 
+    user = User.query.filter_by(username = username).first()
+    if not user:
+        return json.dumps({'success': False, 'error': 'User does not exist!'}), 404
+    
+    if (user.password) == password:
+        return json.dumps({'success': True, 'data': user.serialize()}), 200
+    return json.dumps({'success': False, 'error': 'Password is incorrect!'}), 401
+
+
 @app.route('/api/user/<int:user_id>/create/', methods = ['POST'])
 def create_meme(user_id):
 
