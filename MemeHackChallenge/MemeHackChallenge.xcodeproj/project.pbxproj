@@ -21,6 +21,10 @@
 		E9478AA82388702400E20FE1 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478AA72388702400E20FE1 /* Meme.swift */; };
 		E9478AAC2388742B00E20FE1 /* MemeHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */; };
 		E9D4C1AA239DAE440088F238 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4C1A9239DAE440088F238 /* SearchCollectionViewController.swift */; };
+		E9D4C1B0239DE3A30088F238 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4C1AD239DE3A20088F238 /* Restaurant.swift */; };
+		E9D4C1B2239DE3A30088F238 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4C1AF239DE3A30088F238 /* RestaurantCollectionViewCell.swift */; };
+		E9D4C1B4239DE3E10088F238 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4C1B3239DE3E10088F238 /* RestaurantViewController.swift */; };
+		E9D4C1B6239DE54C0088F238 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D4C1B5239DE54C0088F238 /* Constants.swift */; };
 		E9FECF7A239AEB0B0002FFB4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */; };
 		E9FECF7C239AFD340002FFB4 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +73,10 @@
 		E9478AA72388702400E20FE1 /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		E9478AAB2388742B00E20FE1 /* MemeHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeHistoryViewController.swift; sourceTree = "<group>"; };
 		E9D4C1A9239DAE440088F238 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
+		E9D4C1AD239DE3A20088F238 /* Restaurant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		E9D4C1AF239DE3A30088F238 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
+		E9D4C1B3239DE3E10088F238 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
+		E9D4C1B5239DE54C0088F238 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E9FECF79239AEB0B0002FFB4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +157,8 @@
 		E9478A722387831A00E20FE1 /* MemeHackChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				E9D4C1AD239DE3A20088F238 /* Restaurant.swift */,
+				E9D4C1AF239DE3A30088F238 /* RestaurantCollectionViewCell.swift */,
 				E9478A732387831A00E20FE1 /* AppDelegate.swift */,
 				E9478AA32387949D00E20FE1 /* MemeCollectionViewCell.swift */,
 				E9478AA72388702400E20FE1 /* Meme.swift */,
@@ -161,6 +171,8 @@
 				E9FECF7B239AFD340002FFB4 /* SignUpViewController.swift */,
 				6ECF0E67239B12B500B881FA /* CanvasViewController.swift */,
 				E9D4C1A9239DAE440088F238 /* SearchCollectionViewController.swift */,
+				E9D4C1B3239DE3E10088F238 /* RestaurantViewController.swift */,
+				E9D4C1B5239DE54C0088F238 /* Constants.swift */,
 			);
 			path = MemeHackChallenge;
 			sourceTree = "<group>";
@@ -421,15 +433,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9D4C1B0239DE3A30088F238 /* Restaurant.swift in Sources */,
 				6ECF0E68239B12B500B881FA /* CanvasViewController.swift in Sources */,
 				E9FECF7A239AEB0B0002FFB4 /* NetworkManager.swift in Sources */,
 				E9FECF7C239AFD340002FFB4 /* SignUpViewController.swift in Sources */,
 				E9478AAC2388742B00E20FE1 /* MemeHistoryViewController.swift in Sources */,
 				E9478AA42387949D00E20FE1 /* MemeCollectionViewCell.swift in Sources */,
 				E9478AA82388702400E20FE1 /* Meme.swift in Sources */,
+				E9D4C1B6239DE54C0088F238 /* Constants.swift in Sources */,
 				E9478A782387831A00E20FE1 /* ViewController.swift in Sources */,
+				E9D4C1B2239DE3A30088F238 /* RestaurantCollectionViewCell.swift in Sources */,
 				E9D4C1AA239DAE440088F238 /* SearchCollectionViewController.swift in Sources */,
 				E9478A742387831A00E20FE1 /* AppDelegate.swift in Sources */,
+				E9D4C1B4239DE3E10088F238 /* RestaurantViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

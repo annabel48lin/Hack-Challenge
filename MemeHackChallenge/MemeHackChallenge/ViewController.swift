@@ -151,10 +151,6 @@ class ViewController: UIViewController {
     
     @objc func loginAction() {
         let newMeme = MemeHistoryViewController()
-        //navigationController?.pushViewController(newMeme, animated: true)
-        //NetworkManger.signIn(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
-        //NetworkManger.signup(username: userNameTextField.text ?? "", password: passwordTextField.text ?? "")
-        
         let u: String = userNameTextField.text ?? ""
         let p: String = passwordTextField.text ?? ""
         if u == "" || p == "" {
@@ -164,9 +160,10 @@ class ViewController: UIViewController {
             return
         } else {
             NetworkManger.signIn(username: u, password: p)
-    
+            //sleep(5)
+            print("hello")
             print(NetworkManger.signInResult)
-            
+
             if NetworkManger.signInResult == true {
                 navigationController?.pushViewController(newMeme, animated: true)
             } else {
@@ -174,6 +171,8 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+        //navigationController?.pushViewController(newMeme, animated: true)
         
     }
     
