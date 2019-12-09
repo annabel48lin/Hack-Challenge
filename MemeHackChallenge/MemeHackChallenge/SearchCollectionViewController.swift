@@ -50,8 +50,8 @@ class SearchCollectionViewController: UICollectionViewController, UISearchResult
         searchCollection.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding*5),
         searchCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
         searchCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: padding),
-        searchCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-        searchCollection.heightAnchor.constraint(equalToConstant: 100)])
+        searchCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)])
+        //searchCollection.heightAnchor.constraint(equalToConstant: 100)])
     }
 
     // MARK: UICollectionViewDataSource

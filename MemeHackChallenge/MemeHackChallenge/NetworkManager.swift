@@ -106,25 +106,24 @@ class NetworkManger {
     }
 
     static func signIn(username: String, password: String) {
-        print("inside signin")
         let parameters: [String: Any] = [
             "username": username,
             "password": password
         ]
             
-        let url: String = "\(endpoint)/api/user/signin/"
+        let url: String = "\(endpoint)/api/users/signin/"
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData { response in
             switch response.result {
             case .success(let data):
-                print("inside success switch")
                 let jsonDecoder = JSONDecoder()
                 if let userData = try? jsonDecoder.decode(SignInResponseData.self, from: data) {
+                    signInResult = true
+                    print(signInResult)
                     print(userData.data.id)
                 }
-                signInResult = true
+                
 
             case .failure(let error):
-                print("inside failure switch")
                 print(error.localizedDescription)
                 signInResult = false
             }

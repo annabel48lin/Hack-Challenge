@@ -11,6 +11,7 @@ import UIKit
 class MemeCollectionViewCell: UICollectionViewCell {
     var meme: UIImageView!
     var deleteLabel: UILabel!
+    var id: String!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +25,7 @@ class MemeCollectionViewCell: UICollectionViewCell {
         deleteLabel = UILabel()
         deleteLabel.text = "PUT IN MEME ID"
         deleteLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentView.addSubview(deleteLabel)
+        //contentView.addSubview(deleteLabel)
         
         setUpConstraints()
     }
@@ -47,6 +48,7 @@ class MemeCollectionViewCell: UICollectionViewCell {
     
     func config(for m: Meme) {
         meme.image = UIImage(named: m.URL) // creating image using URL from Backend
+        id = m.imageID
     }
     
     required init?(coder: NSCoder) {
